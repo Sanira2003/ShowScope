@@ -1,11 +1,33 @@
-import "./App.css";
+import "./css/App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MovieCard from "./components/MovieCard"; 
+import movie from "./assets/movie.webp"
+
+const router = createBrowserRouter([
+  {
+    path: `/`,
+    element: (
+      <MovieCard
+        movie={{
+          id: 1,
+          title: "sanira",
+          poster_path: movie,
+          vote_avarage: "2",
+          release_date: "2025",
+        }}
+      />
+    ),
+  }
+]);
+
+
 
 function App() {
-  return <>
-  <div className="home">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque labore, perferendis tenetur commodi quam incidunt voluptate laboriosam possimus dicta quidem asperiores, rerum quas vel ipsam. Fugit quis eum nisi odio unde molestias commodi quaerat in laborum earum, atque doloremque sed perferendis laudantium maxime ex voluptatem? Accusamus libero necessitatibus eveniet sit.</p>
-  </div>
-  </>;
+  return (
+    <>
+    <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
