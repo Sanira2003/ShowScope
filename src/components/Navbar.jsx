@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "../css/Navbar.css";
 import { Link } from "react-router-dom";
@@ -15,16 +14,19 @@ const Navbar = () => {
   }, [isDarkMode]);
 
   const [isExpanded, setIsExpanded] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 768);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    if (!isExpanded && windowWidth > 768) setIsExpanded(true);
-  }, [windowWidth]);
+    isLargeScreen ? setIsExpanded(true) : setIsExpanded(false);
+  }, [isLargeScreen]);
 
   const [movieName, setMovieName] = useState("");
   console.log(movieName);
