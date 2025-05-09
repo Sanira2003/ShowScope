@@ -17,8 +17,8 @@ const MovieGrid = ({ movies, title }) => {
       <h2 className="movie-title">{title}</h2>
       <div className="movies">
         {movies.map((movie) => (
-          <div className="movie-shower">
-            <MovieCard key={movie.id} movie={movie} />
+          <div key={movie.id} className="movie-shower">
+            <MovieCard movie={movie} />
           </div>
         ))}
       </div>
