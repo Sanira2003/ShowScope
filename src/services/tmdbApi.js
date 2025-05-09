@@ -11,11 +11,10 @@ export const getTrendingMovies = async () => {
 };
 
 export const getPopulerMovies = async () => {
-  const response = await fetch(
-    `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`
-  );
+  const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
   const result = await response.json();
   return result;
+  set;
 };
 
 export const searchMovies = async (movieName) => {

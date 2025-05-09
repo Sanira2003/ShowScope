@@ -8,7 +8,7 @@ const MovieGrid = ({ movies, title }) => {
     return (
       <div className="movie-grid">
         <h2 className="movie-title">{title}</h2>
-        <p className="error-msg">No movies found.</p>
+        <p className="error-msg">No movies to show.</p>
       </div>
     );
   }
