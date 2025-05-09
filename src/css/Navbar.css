@@ -1,0 +1,170 @@
+.navbar {
+  height: 70px;
+  background: var(--surface-color);
+  box-shadow: 0 0 5px var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  padding: 0 15px 0 15px;
+  position: absolute;
+  gap: 20px;
+  transition: 0.3s;
+}
+
+.logo {
+  position: absolute;
+  left: 15px;
+  text-shadow: 0 0 3px var(--border-color);
+  color: var(--text-primary);
+}
+
+.logo .colored {
+  color: var(--primary-color);
+}
+
+.toggle-menu {
+  position: absolute;
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  right: 0;
+  height: 100vh;
+  background: rgba(17, 24, 39, 0.3);
+  padding: 90px 50px 20px;
+  transition: 0.5s;
+  gap: 20px;
+}
+
+.close-btn {
+  height: 70px;
+  background: var(--surface-color);
+  transition: 0.5s;
+  color: var(--text-secondary);
+  background: transparent;
+  position: absolute;
+  right: 60px;
+  top: 0;
+}
+
+.menu-btn {
+  color: var(--text-secondary);
+  background: transparent;
+  transition: 0.5s;
+}
+
+.close-btn:hover,
+.menu-btn:hover {
+  color: var(--text-primary);
+}
+
+.navigations {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.navigations li:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.search-movies {
+  width: auto;
+  background: var(--surface-color);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  box-shadow: 0 0 3px var(--border-color);
+}
+
+.search-movies:focus-within,
+.search-movies:has(input:valid) {
+  border: 2px solid var(--primary-color);
+}
+
+.search-movies button {
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.search-movies button:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.search-movies input {
+  width: 0;
+  transition: 0.3s;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: var(--text-color);
+}
+
+.search-movies:hover input {
+  width: 150px;
+}
+
+.search-movies input:focus,
+.search-movies input:valid {
+  width: 150px;
+}
+
+.mode {
+  height: 100%;
+  background: transparent;
+  z-index: 10;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.mode:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    padding: 20px;
+  }
+
+  .logo {
+    left: 20px;
+  }
+
+  .close-btn,
+  .menu-btn {
+    display: none;
+  }
+
+  .toggle-menu {
+    position: relative;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  .navigations {
+    flex-direction: row;
+    align-items: center;
+  }
+}
