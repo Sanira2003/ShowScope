@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/Navbar.css";
 import { Link } from "react-router-dom";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
-import { getSearchMovie } from "../services/tmdbApi";
+import { searchMovies } from "../services/tmdbApi";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -18,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth > 768);
+      setIsLargeScreen(window.innerWidth >= 768);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -67,7 +67,7 @@ const Navbar = () => {
               setMovieName(event.target.value);
             }}
           />
-          <button type="submit" onClick={getSearchMovie}>
+          <button type="submit" onClick={searchMovies}>
             <Search size={18} />
           </button>
         </div>

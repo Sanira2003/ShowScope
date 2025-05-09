@@ -4,24 +4,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import MovieCard from "./components/MovieCard";
+import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import movie from "./assets/movie.webp";
-import MovieGrid from "./components/MovieGrid";
 
 const router = createBrowserRouter([
   {
     path: `/`,
     element: (
-      <MovieCard
-        movie={{
-          id: 1,
-          title: "Sanira Deneth Adesha",
-          poster_path: movie,
-          vote_avarage: "2",
-          release_date: "2025",
-        }}
-      />
+      <>
+        <Home />
+      </>
     ),
   },
 ]);
@@ -30,9 +22,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar></Navbar>
+        <Navbar />
       </BrowserRouter>
-      {/* <RouterProvider router={router} /> */}
+
+      <RouterProvider router={router} />
     </>
   );
 }
