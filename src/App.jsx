@@ -7,6 +7,7 @@ import {
 import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import movie from "./assets/movie.webp";
+import MovieGrid from "./components/MovieGrid";
 
 const router = createBrowserRouter([
   {

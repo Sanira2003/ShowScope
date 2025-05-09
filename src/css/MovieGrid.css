@@ -1,0 +1,57 @@
+.movie-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.movie-grid .movie-title,
+.movie-grid .error-msg {
+  width: 90%;
+}
+
+.movie-grid .movies {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 30px;
+}
+
+.movie-grid .movie-shower {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+  .movie-grid .movies {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .movie-grid .movie-title,
+  .movie-grid .error-msg {
+    width: 93%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movie-grid .movie-title,
+  .movie-grid .error-msg {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .movie-grid .movies {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movie-grid .movies {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
