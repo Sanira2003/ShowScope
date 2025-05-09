@@ -6,7 +6,7 @@ import FavoriteIcon from "./FavoriteIcon";
 import "../css/MovieCard.css";
 
 const MovieCard = ({ movie }) => {
-  const { id, title, poster_path, vote_avarage, release_date } = movie;
+  const { id, title, poster_path, vote_average, release_date } = movie;
 
   return (
     <div className="movie-card">
@@ -20,10 +20,10 @@ const MovieCard = ({ movie }) => {
         <div className="movie-info">
           <h3 className="movie-name">{title}</h3>
           <div className="movie-description">
-            <p>{release_date}</p>
+            <p>{release_date.split("-")[0]}</p>
             <span className="rating">
               <Star color="gold" size={15} />
-              <p>{vote_avarage}</p>
+              <p>{Number(vote_average).toFixed(1)}</p>
             </span>
           </div>
         </div>

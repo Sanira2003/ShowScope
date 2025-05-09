@@ -1,0 +1,35 @@
+.loader-body {
+  width: 100%;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.loader-body .loader {
+  animation: spin 1s linear infinite;
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.4;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  .loader-body .loader {
+    width: 40px;
+    height: 40px;
+  }
+}

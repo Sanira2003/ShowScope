@@ -1,26 +1,52 @@
 import React, { useEffect, useState } from "react";
 import MovieGrid from "../components/MovieGrid";
-import { getPopulerMovies } from "../services/tmdbApi";
+import { getPopulerMovies, getTrendingMovies } from "../services/tmdbApi";
+import Loading from "../components/Loading";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const [populeMovies, setPopulerMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadTrendingMovies = async () => {
+      try {
+        const trendingResult = await getTrendingMovies();
+        setTrendingMovies(trendingResult.results);
+      } catch (e) {
+        console.log(e);
+        setError(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadTrendingMovies();
+  }, []);
 
   useEffect(() => {
     const loadPopulerMovies = async () => {
       try {
-        const populerMovies = await getPopulerMovies();
-        setMovies(populerMovies.results);
-      } catch (error) {
-        console.log(error);
+        const populerResult = await getPopulerMovies();
+        setPopulerMovies(populerResult.results);
+      } catch (e) {
+        console.log(e);
+        setError(e);
       } finally {
-        console.log(movies);
+        setLoading(false);
       }
     };
     loadPopulerMovies();
   }, []);
-  return (
+
+  if (error) console.log(error);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="home">
-      <MovieGrid movies={movies} title={"Home"} />
+      <MovieGrid movies={trendingMovies} title="Trending Movies" />
+      <MovieGrid movies={populeMovies} title="Popular Movies" />
     </div>
   );
 };
