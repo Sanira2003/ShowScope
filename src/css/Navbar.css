@@ -171,6 +171,10 @@
     background: transparent;
   }
 
+  .dark .toggle-menu {
+    background: transparent;
+  }
+
   .navigations {
     flex-direction: row;
     align-items: center;
