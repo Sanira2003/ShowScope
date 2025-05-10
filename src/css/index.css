@@ -34,3 +34,16 @@ body.dark {
   --accent-color: #fcd34d;
   --border-color: #2d2d2d;
 }
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--text-secondary);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}

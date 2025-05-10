@@ -1,31 +1,20 @@
 import "./css/App.css";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-
-const router = createBrowserRouter([
-  {
-    path: `/`,
-    element: (
-      <>
-        <Home />
-      </>
-    ),
-  },
-]);
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
-
-      <RouterProvider router={router} />
     </>
   );
 }
