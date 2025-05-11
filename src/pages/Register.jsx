@@ -5,12 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Loading from "../components/Loading";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signupWithGoogle, signupWithFacebook, login } = useAuth();
+  const { signupWithGoogle, signupWithFacebook, signup } = useAuth();
 
   const navigate = useNavigate();
 
@@ -19,32 +20,37 @@ const Login = () => {
     return pattern.test(email);
   };
 
+  const isPasswordsMatching = () =>
+    password === confirmPassword ? true : false;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isValidEmail()) {
+    setError("");
+    if (isValidEmail() && isPasswordsMatching()) {
       try {
-        setError("");
         setLoading(true);
-        await login(email, password);
+        await signup(email, password);
         navigate("/");
       } catch (err) {
-        setError("Email or password may be wrong");
+        setError("Error sign in");
         console.log(err);
       } finally {
         setLoading(false);
       }
     } else {
-      setError("Please enter a valid email.");
+      isValidEmail() && setError("Please enter a valid email.");
+      isPasswordsMatching() &&
+        setError((prev) => `${prev} Passwords cre not matching.`);
     }
   };
 
   return loading ? (
     <Loading />
   ) : (
-    <div className="page page-login">
+    <div className="page page-register">
       <div className="login">
         <form>
-          <h2>Login</h2>
+          <h2>Register</h2>
           <div className="input-box">
             <input
               type="text"
@@ -69,11 +75,24 @@ const Login = () => {
               <p>Password</p>
             </span>
           </div>
+          <div className="input-box">
+            <input
+              type="password"
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.vale)}
+            />
+            <Lock className="icon" />
+            <span className="input-type">
+              <p>Confirm Password</p>
+            </span>
+          </div>
+
           <p className="error-massage">{error ? error : ""}</p>
           <button type="submit" className="btn" onClick={handleSubmit}>
-            Login
+            Signup
           </button>
-          <p>or login with social platforms</p>
+          <p>or signup with social platforms</p>
           <div className="social-icons">
             <button
               onClick={async (e) => {
@@ -130,9 +149,9 @@ const Login = () => {
               </svg>
             </button>
           </div>
-          <Link className="move-link" to={"/register"}>
+          <Link className="move-link" to={"/login"}>
             <p>
-              Don't have an account? <u>Register</u>
+              Already have an account? <u>Login</u>
             </p>
           </Link>
         </form>
@@ -141,4 +160,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
