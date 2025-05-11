@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import {
   auth,
@@ -13,6 +14,7 @@ import {
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -20,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signup = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+    createUserWithEmailAndPassword(auth, email, password);
 
   const signupWithGoogle = () => signInWithPopup(auth, googleProvider);
 

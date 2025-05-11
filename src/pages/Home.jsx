@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import MovieGrid from "../components/MovieGrid";
 import { getPopulerMovies, getTrendingMovies } from "../services/tmdbApi";
 import Loading from "../components/Loading";
+import { useUserdata } from "../contexts/UserdataContext";
 
 const Home = () => {
+  const { userData } = useUserdata();
+  console.log(userData);
   const [populeMovies, setPopulerMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [loading, setLoading] = useState(true);
