@@ -1,0 +1,129 @@
+.page-login,
+.page-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login,
+.register {
+  width: 300px;
+  background: var(--surface-color);
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 0 3px var(--border-color);
+}
+
+.login form,
+.register form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-box {
+  position: relative;
+}
+
+.login h2 {
+  margin-bottom: 30px;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  background: transparent;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 500;
+  outline: none;
+  padding: 13px 50px 13px 20px;
+  width: 100%;
+}
+
+.input-box .icon {
+  color: var(--text-secondary);
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-box .input-type {
+  background: var(--surface-color);
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  left: 20px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s;
+}
+
+.input-box input:focus ~ .input-type,
+.input-box input:valid ~ .input-type {
+  left: 10px;
+  top: -11px;
+  transform: scale(0.8);
+}
+
+.error-massage {
+  color: #ed4337;
+}
+
+.btn {
+  background: var(--primary-color);
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 5px var(--border-color);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  height: 46px;
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons button {
+  background: transparent;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  display: inline-flex;
+  margin: 0 8px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.social-icons button svg {
+  transition: 0.3s;
+  fill: var(--text-secondary);
+}
+
+.social-icons button:hover svg {
+  fill: var(--text-primary);
+}
+
+.move-link {
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .login,
+  .register {
+    width: 400px;
+  }
+}

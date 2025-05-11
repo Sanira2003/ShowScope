@@ -44,7 +44,7 @@ const Home = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div className="home">
+    <div className="page">
       <MovieGrid movies={trendingMovies} title="Trending Movies" />
       <MovieGrid movies={populeMovies} title="Popular Movies" />
     </div>
