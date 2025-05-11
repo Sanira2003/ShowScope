@@ -10,7 +10,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div className="movie-card">
-      <FavoriteIcon />
+      <FavoriteIcon movie={movie} />
       <Link to={`/movies/${id}`}>
         <img
           src={getImageUrl(poster_path)}
