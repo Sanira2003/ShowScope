@@ -18,7 +18,7 @@ const Profile = () => {
       setError("");
       setLoading(true);
       await logout();
-      await removeUserdata();
+      removeUserdata();
       navigate("/");
     } catch (err) {
       console.log(err);

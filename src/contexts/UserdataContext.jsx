@@ -10,7 +10,7 @@ export const useUserdata = () => useContext(UserdataContext);
 
 export const UserdataProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
-  const [favoriteMovies, setFavouriteMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { currentUser } = useAuth();
 
@@ -57,18 +57,18 @@ export const UserdataProvider = ({ children }) => {
 
   const removeUserdata = () => {
     setUserData(null);
+    // setFavoriteMovies([]);
   };
 
   const addToFavorites = (movie) => {
-    setFavouriteMovies((prev) => {
+    setFavoriteMovies((prev) => {
       const exists = prev.some((m) => m.id === movie.id);
       return exists ? prev : [...prev, movie];
     });
   };
 
   const removeFromFavorites = (movie) => {
-    const updateMovies = favoriteMovies.filter((m) => m.id !== movie.id);
-    setFavouriteMovies(updateMovies);
+    setFavoriteMovies(favoriteMovies.filter((m) => m.id !== movie.id));
   };
 
   const isFavoriteMovie = (movie) => {
@@ -76,18 +76,20 @@ export const UserdataProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const updateFavoriteMovies = async () => {
-      if (!currentUser) return;
-      try {
-        const userRef = doc(db, "users", currentUser.uid);
-        await updateDoc(userRef, { favoriteMovies: favoriteMovies });
-        console.log("Updated Firestore successfully!");
-      } catch (error) {
-        console.error("Failed to update Firestore:", error);
-      }
-    };
-    updateFavoriteMovies();
-  }, [favoriteMovies, currentUser]);
+    if (userData && currentUser) {
+      const updateFavoriteMovies = async () => {
+        try {
+          const userRef = doc(db, "users", currentUser.uid);
+          await updateDoc(userRef, { favoriteMovies });
+          console.log("Updated Firestore successfully!");
+        } catch (error) {
+          console.error("Failed to update Firestore:", error);
+        }
+      };
+      updateFavoriteMovies();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favoriteMovies]);
 
   useEffect(() => {
     const initializeUserData = async () => {
@@ -95,17 +97,19 @@ export const UserdataProvider = ({ children }) => {
         setIsLoading(true);
         try {
           const docSnap = await getUserDoc(currentUser);
-          setUserData(docSnap.data());
-          setFavouriteMovies(userData.favoriteMovies);
+          const data = docSnap.data();
+          setUserData(data);
+          setFavoriteMovies(data.favoriteMovies);
         } catch (err) {
           console.error("Error initializing user data:", err);
         } finally {
           setIsLoading(false);
         }
-      }
+      } else setFavoriteMovies([]);
     };
     initializeUserData();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   const value = {
     createUserDocumentIfNotExists,

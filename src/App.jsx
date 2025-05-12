@@ -6,6 +6,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Favourite from "./pages/Favourite";
 import { UserdataProvider } from "./contexts/UserdataContext";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/favorite" element={<Favourite />} />
           </Routes>
         </UserdataProvider>
       </AuthProvider>
