@@ -38,6 +38,11 @@
   padding: 90px 50px 20px;
   transition: 0.5s;
   gap: 20px;
+  top: -100vh;
+}
+
+.expanded .toggle-menu {
+  top: 0;
 }
 
 .dark .toggle-menu {
@@ -53,12 +58,23 @@
   position: absolute;
   right: 75px;
   top: 0;
+  transform: rotateZ(-180deg);
+}
+
+.expanded .close-btn {
+  transform: rotateZ(180deg);
 }
 
 .menu-btn {
   color: var(--text-secondary);
   background: transparent;
+  transform: rotateZ(-180deg);
   transition: 0.5s;
+}
+
+.expanded .menu-btn {
+  transform: rotateZ(180deg);
+  color: transparent;
 }
 
 .close-btn:hover,
@@ -73,6 +89,12 @@
   align-items: center;
   gap: 20px;
   font-size: 20px;
+}
+
+.navigations li {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .navigations li:hover {
@@ -169,6 +191,7 @@
     height: 100%;
     padding: 0;
     background: transparent;
+    transition: none;
   }
 
   .dark .toggle-menu {

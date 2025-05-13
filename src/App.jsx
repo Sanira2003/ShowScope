@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Favourite from "./pages/Favourite";
 import { UserdataProvider } from "./contexts/UserdataContext";
 import EditProfile from "./pages/EditProfile";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/favorite" element={<Favourite />} />
             <Route path="/editProfile" element={<EditProfile />} />
+            <Route path="/search" element={<Search />} />
           </Routes>
         </UserdataProvider>
       </AuthProvider>

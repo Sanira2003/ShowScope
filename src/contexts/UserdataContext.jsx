@@ -5,13 +5,11 @@ import { useAuth } from "./AuthContext";
 
 const UserdataContext = createContext();
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useUserdata = () => useContext(UserdataContext);
-
-export const UserdataProvider = ({ children }) => {
+const UserdataProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { currentUser } = useAuth();
 
   const getUserRef = (user) => doc(db, "users", user.uid);
@@ -134,6 +132,8 @@ export const UserdataProvider = ({ children }) => {
     removeFromFavorites,
     isFavoriteMovie,
     updateUserData,
+    searchQuery,
+    setSearchQuery,
   };
 
   return (
@@ -142,3 +142,6 @@ export const UserdataProvider = ({ children }) => {
     </UserdataContext.Provider>
   );
 };
+
+const useUserdata = () => useContext(UserdataContext);
+export { UserdataProvider, useUserdata };

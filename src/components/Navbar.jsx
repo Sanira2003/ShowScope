@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../css/Navbar.css";
-import { Link } from "react-router-dom";
-import { Search, Moon, Sun, Menu, X } from "lucide-react";
-import { searchMovies } from "../services/tmdbApi";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Search, Moon, Sun, Menu, X, Heart, User, Home } from "lucide-react";
+import { useUserdata } from "../contexts/UserdataContext";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
+  const [query, setQuery] = useState("");
   const body = document.body;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+  const { setSearchQuery, userData } = useUserdata();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     isDarkMode ? body.classList.add("dark") : body.classList.remove("dark");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode]);
-
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,58 +33,62 @@ const Navbar = () => {
     isLargeScreen ? setIsExpanded(true) : setIsExpanded(false);
   }, [isLargeScreen]);
 
-  const [movieName, setMovieName] = useState("");
-  console.log(movieName);
+  useEffect(() => {
+    !isLargeScreen && setIsExpanded(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
   return (
-    <header className="navbar">
+    <header className={`navbar ${isExpanded && "expanded"}`}>
       <Link to={"/"} className="logo">
         <h1>
           Show<span className="colored">Scope</span>
         </h1>
       </Link>
-      <button
-        className="menu-btn"
-        onClick={() => setIsExpanded(!isExpanded)}
-        style={{
-          transform: isExpanded ? "rotateZ(180deg)" : "rotateZ(-180deg)",
-          color: isExpanded && "transparent",
-        }}
-      >
+      <button className="menu-btn" onClick={() => setIsExpanded(!isExpanded)}>
         <Menu />
       </button>
-      <nav className="toggle-menu" style={{ top: isExpanded ? "0" : "-100vh" }}>
+      <nav className="toggle-menu">
         <button
           className="close-btn"
           onClick={() => setIsExpanded(!isExpanded)}
-          style={{
-            transform: isExpanded ? "rotateZ(180deg)" : "rotateZ(-180deg)",
-          }}
         >
           <X />
         </button>
-        <div className="search-movies">
+        <form className="search-movies">
           <input
             type="text"
             required
+            value={query}
             placeholder="Search movies.."
-            value={movieName}
-            onChange={(event) => {
-              setMovieName(event.target.value);
-            }}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" onClick={searchMovies}>
+          <button
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              setSearchQuery(query);
+              setQuery("");
+              navigate("/search");
+            }}
+          >
             <Search size={18} />
           </button>
-        </div>
+        </form>
         <ul className="navigations">
           <li>
+            <Home size="15" />
             <Link to={"/"}>Home</Link>
           </li>
           <li>
+            <Heart size="15" />
             <Link to={"/favorite"}>Favorites</Link>
           </li>
           <li>
-            <Link to={"/login"}>Login</Link>
+            {userData && <User size="15" />}
+            <Link to={userData ? "/profile" : "/login"}>
+              {userData ? userData.name.split(" ")[0] : "Login"}
+            </Link>
           </li>
         </ul>
       </nav>

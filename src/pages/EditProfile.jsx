@@ -16,7 +16,7 @@ const EditProfile = () => {
   const isFirstRender = useRef(true);
 
   const handleSaveData = async () => {
-    if (newUserData) setIsLoading(true);
+    setIsLoading(true);
     try {
       await updateUserData(newUserData);
       navigate("/profile", { state: { updated: true } });
@@ -33,10 +33,8 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    console.log(isFirstRender.current);
     if (isFirstRender.current) {
       isFirstRender.current = false;
-      console.log("First render, skipping upload...");
       return;
     }
 
@@ -117,9 +115,7 @@ const EditProfile = () => {
                 placeholder="Add name."
                 value={newUserData.name}
                 onChange={(e) =>
-                  setNewUserData((prev) => {
-                    return { ...prev, name: e.target.value };
-                  })
+                  setNewUserData((prev) => ({ ...prev, name: e.target.value }))
                 }
                 className="edit-input"
               />
@@ -143,9 +139,10 @@ const EditProfile = () => {
                 placeholder="Add country."
                 value={newUserData.country}
                 onChange={(e) =>
-                  setNewUserData((prev) => {
-                    return { ...prev, country: e.target.value };
-                  })
+                  setNewUserData((prev) => ({
+                    ...prev,
+                    country: e.target.value,
+                  }))
                 }
                 className="edit-input"
               />
@@ -158,9 +155,7 @@ const EditProfile = () => {
                 placeholder="Add bio."
                 value={newUserData.bio}
                 onChange={(e) =>
-                  setNewUserData((prev) => {
-                    return { ...prev, bio: e.target.value };
-                  })
+                  setNewUserData((prev) => ({ ...prev, bio: e.target.value }))
                 }
                 className="edit-input"
               />
@@ -177,16 +172,23 @@ const EditProfile = () => {
               </div>
               <div className="detail-item">
                 <p className="detail-label">Favorite Genre:</p>
-                <input
-                  placeholder="Add favorite genre."
-                  value={newUserData.favoriteGenre}
-                  onChange={(e) =>
-                    setNewUserData((prev) => {
-                      return { ...prev, favoriteGenre: e.target.value };
-                    })
-                  }
+                <select
                   className="edit-input"
-                />
+                  onChange={(e) =>
+                    setNewUserData((prev) => ({
+                      ...prev,
+                      favoriteGenre: e.target.value,
+                    }))
+                  }
+                >
+                  <option value="Action">Action</option>
+                  <option value="Comedy">Comedy</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Sci-Fi">Sci-Fi</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Romance">Romance</option>
+                </select>
               </div>
 
               <div className="detail-item">
@@ -195,9 +197,10 @@ const EditProfile = () => {
                   placeholder="Add favorite movie."
                   value={newUserData.favoriteMovie}
                   onChange={(e) =>
-                    setNewUserData((prev) => {
-                      return { ...prev, favoriteMovie: e.target.value };
-                    })
+                    setNewUserData((prev) => ({
+                      ...prev,
+                      favoriteMovie: e.target.value,
+                    }))
                   }
                   className="edit-input"
                 />

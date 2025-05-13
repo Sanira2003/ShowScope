@@ -13,10 +13,7 @@ const FavoriteIcon = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleFavorite = () => {
-    if (!currentUser) {
-      navigate("/login");
-      return;
-    }
+    if (!currentUser) return navigate("/login");
     if (isFavoriteMovie(movie)) removeFromFavorites(movie);
     else addToFavorites(movie);
   };
@@ -24,8 +21,8 @@ const FavoriteIcon = ({ movie }) => {
   return (
     <div className="fav-btn-container" onClick={handleFavorite}>
       <Heart
+        className="icon"
         color={isFavoriteMovie(movie) ? "#e50914" : "rgb(204, 204, 204, .8)"}
-        size={18}
         fill={isFavoriteMovie(movie) ? "#e50914" : "transparent"}
       />
     </div>
