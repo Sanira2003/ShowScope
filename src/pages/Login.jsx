@@ -26,9 +26,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isValidEmail()) {
+      setError("");
+      setLoading(true);
       try {
-        setError("");
-        setLoading(true);
         await login(email, password);
         navigate("/");
       } catch (err) {
@@ -44,9 +44,9 @@ const Login = () => {
 
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
       const userCredential = await signupWithGoogle();
       const user = userCredential.user;
       await createUserDocumentIfNotExists(user);
@@ -61,9 +61,9 @@ const Login = () => {
 
   const handleFacebookLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
       const userCredential = await signupWithFacebook();
       const user = userCredential.user;
       await createUserDocumentIfNotExists(user);
@@ -105,7 +105,7 @@ const Login = () => {
               type="password"
               required
               value={password}
-              onChange={(e) => setPassword(e.target.vale)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Lock className="icon" />
             <span className="input-type">

@@ -8,15 +8,15 @@ import Loading from "../components/Loading";
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const { logout } = useAuth();
   const { userData, removeUserdata } = useUserdata();
   const navigate = useNavigate();
 
   const handleLogout = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
       await logout();
       removeUserdata();
       navigate("/");
@@ -29,8 +29,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    !currentUser && navigate("/login");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    !userData && navigate("/login");
   });
 
   return loading ? (
@@ -92,7 +91,7 @@ const Profile = () => {
               <div className="detail-item">
                 <p className="detail-label">Favorite Genre:</p>
                 <p className="detail-value">
-                  {userData.favoriteGenres || "Add favorite genre"}
+                  {userData.favoriteGenre || "Add favorite genre"}
                 </p>
               </div>
 

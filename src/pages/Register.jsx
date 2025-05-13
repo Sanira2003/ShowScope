@@ -30,9 +30,9 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     if (isValidEmail() && isPasswordsMatching()) {
       try {
-        setLoading(true);
         await signup(email, password);
         await createUserDocumentIfNotExists(currentUser);
         navigate("/");
@@ -49,15 +49,11 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    currentUser && navigate("/profile");
-  }, []);
-
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
       const userCredential = await signupWithGoogle();
       const user = userCredential.user;
       await createUserDocumentIfNotExists(user);
@@ -72,9 +68,9 @@ const Register = () => {
 
   const handleFacebookLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
       const userCredential = await signupWithFacebook();
       const user = userCredential.user;
       await createUserDocumentIfNotExists(user);
@@ -86,6 +82,11 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    currentUser && navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return loading ? (
     <Loading />

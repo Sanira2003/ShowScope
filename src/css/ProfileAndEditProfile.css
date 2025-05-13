@@ -185,6 +185,11 @@
   height: 100%;
 }
 
+.edit-input option {
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+}
+
 .profile-country .edit-input {
   width: auto;
   text-align: center;
@@ -224,6 +229,6 @@
   }
 
   .edit-input {
-    font-size: 18px;
+    font-size: 16px;
   }
 }

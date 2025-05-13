@@ -14,13 +14,12 @@ export const getPopulerMovies = async () => {
   const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
   const result = await response.json();
   return result;
-  set;
 };
 
-export const searchMovies = async (movieName) => {
+export const searchMovies = async (query) => {
   const response = await fetch(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
-      movieName
+      query
     )}`
   );
   const result = await response.json();
