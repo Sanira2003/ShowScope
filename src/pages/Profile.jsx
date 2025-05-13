@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/ProfileAndChangeProfile.css";
+import "../css/ProfileAndEditProfile.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useUserdata } from "../contexts/UserdataContext";
 import { useNavigate } from "react-router-dom";
@@ -27,11 +27,11 @@ const Profile = () => {
       setLoading(false);
     }
   };
-  console.log(userData);
 
   useEffect(() => {
     !currentUser && navigate("/login");
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
 
   return loading ? (
     <Loading />
@@ -43,7 +43,7 @@ const Profile = () => {
           <div className="profile-header">
             <div className="profile-photo">
               {userData.photoURL ? (
-                <img src={userData.photoURL} alt="Profile photo" />
+                <img src={userData.photoURL} alt=" " />
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,11 +90,9 @@ const Profile = () => {
                 <p className="detail-value">{userData.email}</p>
               </div>
               <div className="detail-item">
-                <p className="detail-label">Favorite Genres:</p>
+                <p className="detail-label">Favorite Genre:</p>
                 <p className="detail-value">
-                  {userData.favoriteGenres.length === 0
-                    ? "Add genres."
-                    : userData.favoriteGenres.join(", ")}
+                  {userData.favoriteGenres || "Add favorite genre"}
                 </p>
               </div>
 
@@ -123,7 +121,12 @@ const Profile = () => {
               </div>
             </div>
             <div className="buttons">
-              <button className="edit-btn">Edit Profile</button>
+              <button
+                className="edit-btn"
+                onClick={() => navigate("/editProfile")}
+              >
+                Edit Profile
+              </button>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>

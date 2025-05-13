@@ -40,7 +40,7 @@ export const UserdataProvider = ({ children }) => {
           country: "",
           favoriteMovies: [],
           favoriteMovie: "",
-          favoriteGenres: [],
+          favoriteGenre: "",
           bio: "",
         };
         await setDoc(userRef, newUserData);
@@ -50,6 +50,22 @@ export const UserdataProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("Error creating user document:", err);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateUserData = async (newUserData) => {
+    setIsLoading(true);
+    try {
+      const userRef = getUserRef(currentUser);
+      await updateDoc(userRef, newUserData);
+      setUserData((prev) => {
+        return { ...prev, ...newUserData };
+      });
+    } catch (err) {
+      console.error("Failed to update Firestore:", err);
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +73,6 @@ export const UserdataProvider = ({ children }) => {
 
   const removeUserdata = () => {
     setUserData(null);
-    // setFavoriteMovies([]);
   };
 
   const addToFavorites = (movie) => {
@@ -79,11 +94,10 @@ export const UserdataProvider = ({ children }) => {
     if (userData && currentUser) {
       const updateFavoriteMovies = async () => {
         try {
-          const userRef = doc(db, "users", currentUser.uid);
+          const userRef = getUserRef(currentUser);
           await updateDoc(userRef, { favoriteMovies });
-          console.log("Updated Firestore successfully!");
-        } catch (error) {
-          console.error("Failed to update Firestore:", error);
+        } catch (err) {
+          console.error("Failed to update Firestore:", err);
         }
       };
       updateFavoriteMovies();
@@ -119,6 +133,7 @@ export const UserdataProvider = ({ children }) => {
     addToFavorites,
     removeFromFavorites,
     isFavoriteMovie,
+    updateUserData,
   };
 
   return (

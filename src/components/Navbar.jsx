@@ -11,6 +11,7 @@ const Navbar = () => {
   const body = document.body;
   useEffect(() => {
     isDarkMode ? body.classList.add("dark") : body.classList.remove("dark");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode]);
 
   const [isExpanded, setIsExpanded] = useState(false);

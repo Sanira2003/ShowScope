@@ -122,6 +122,12 @@
   margin-top: 15px;
 }
 
+.error-msg {
+  text-align: center;
+  margin-top: 15px;
+  color: #ed4337;
+}
+
 @media screen and (min-width: 768px) {
   .login,
   .register {
