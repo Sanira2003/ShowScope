@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import MovieGrid from "../components/MovieGrid";
 import { getPopulerMovies, getTrendingMovies } from "../services/tmdbApi";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [populeMovies, setPopulerMovies] = useState([]);
@@ -59,6 +60,7 @@ const Home = () => {
         error={error}
       />
       <MovieGrid movies={populeMovies} title="Popular Movies" error={error} />
+      <Footer />
     </div>
   );
 };

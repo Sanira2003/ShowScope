@@ -3,6 +3,7 @@ import MovieGrid from "../components/MovieGrid";
 import { useUserdata } from "../contexts/UserdataContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Favourite = () => {
   const { favoriteMovies } = useUserdata();
@@ -23,6 +24,7 @@ const Favourite = () => {
         title="Favorite Movies"
         error="Add favorite movies to view."
       />
+      <Footer />
     </div>
   );
 };
