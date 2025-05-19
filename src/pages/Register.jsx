@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, etIsLoading] = useState(false);
   const { currentUser, signupWithGoogle, signupWithFacebook, signup } =
     useAuth();
 
@@ -30,7 +30,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    etIsLoading(true);
     if (isValidEmail() && isPasswordsMatching()) {
       try {
         await signup(email, password);
@@ -40,7 +40,7 @@ const Register = () => {
         setError("Failed to create an account. Email might be already in use.");
         console.log(err);
       } finally {
-        setLoading(false);
+        etIsLoading(false);
       }
     } else {
       isValidEmail() && setError("Please enter a valid email.");
@@ -52,7 +52,7 @@ const Register = () => {
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    etIsLoading(true);
     try {
       const userCredential = await signupWithGoogle();
       const user = userCredential.user;
@@ -62,14 +62,14 @@ const Register = () => {
       console.error("Google login error:", err);
       setError(err.message || "Failed to login with Google");
     } finally {
-      setLoading(false);
+      etIsLoading(false);
     }
   };
 
   const handleFacebookLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    etIsLoading(true);
     try {
       const userCredential = await signupWithFacebook();
       const user = userCredential.user;
@@ -79,7 +79,7 @@ const Register = () => {
       console.error("Google login error:", err);
       setError(err.message || "Failed to login with Google");
     } finally {
-      setLoading(false);
+      etIsLoading(false);
     }
   };
 
@@ -88,7 +88,7 @@ const Register = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <div className="page page-register">

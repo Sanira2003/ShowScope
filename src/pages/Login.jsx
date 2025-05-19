@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { signupWithGoogle, signupWithFacebook, login, currentUser } =
     useAuth();
 
@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
     if (isValidEmail()) {
       setError("");
-      setLoading(true);
+      setIsLoading(true);
       try {
         await login(email, password);
         navigate("/");
@@ -35,7 +35,7 @@ const Login = () => {
         setError("Email or password may be wrong");
         console.log(err);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     } else {
       setError("Please enter a valid email.");
@@ -45,7 +45,7 @@ const Login = () => {
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setIsLoading(true);
     try {
       const userCredential = await signupWithGoogle();
       const user = userCredential.user;
@@ -55,14 +55,14 @@ const Login = () => {
       console.error("Google login error:", err);
       setError(err.message || "Failed to login with Google");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   const handleFacebookLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setIsLoading(true);
     try {
       const userCredential = await signupWithFacebook();
       const user = userCredential.user;
@@ -72,7 +72,7 @@ const Login = () => {
       console.error("Google login error:", err);
       setError(err.message || "Failed to login with Google");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -81,7 +81,7 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <div className="page page-login">

@@ -6,28 +6,27 @@ import Loading from "../components/Loading";
 const Home = () => {
   const [populeMovies, setPopulerMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    console.log(isFirstRender.current);
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
+    if (!isFirstRender.current) {
       return;
     }
 
     const loadTrendingMovies = async () => {
       setError("");
-      setLoading(true);
+      setIsLoading(true);
       try {
         const trendingResult = await getTrendingMovies();
         setTrendingMovies(trendingResult.results);
+        isFirstRender.current = false;
       } catch (e) {
         console.log(e);
         setError(e);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     loadTrendingMovies();
@@ -36,7 +35,7 @@ const Home = () => {
   useEffect(() => {
     const loadPopulerMovies = async () => {
       setError("");
-      setLoading(true);
+      setIsLoading(true);
       try {
         const populerResult = await getPopulerMovies();
         setPopulerMovies(populerResult.results);
@@ -44,13 +43,13 @@ const Home = () => {
         console.log(err);
         setError("Error loading movie");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     loadPopulerMovies();
   }, []);
 
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <div className="page">

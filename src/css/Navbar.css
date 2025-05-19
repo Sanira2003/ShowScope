@@ -1,7 +1,6 @@
 .navbar {
   height: 70px;
   background: var(--surface-color);
-  box-shadow: 0 0 5px var(--border-color);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -172,6 +171,7 @@
   .navbar {
     padding: 30px;
     gap: 30px;
+    height: 85px;
   }
 
   .logo {

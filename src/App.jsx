@@ -10,6 +10,7 @@ import Favourite from "./pages/Favourite";
 import { UserdataProvider } from "./contexts/UserdataContext";
 import EditProfile from "./pages/EditProfile";
 import Search from "./pages/Search";
+import Movie from "./pages/Movie";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/favorite" element={<Favourite />} />
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/movies/:id" element={<Movie />} />
           </Routes>
         </UserdataProvider>
       </AuthProvider>
