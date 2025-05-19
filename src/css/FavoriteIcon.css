@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  right: 10%;
+  right: 8%;
   top: 5%;
   width: 18%;
   user-select: none;
@@ -21,14 +21,6 @@
 }
 
 .fav-btn-container .icon {
-  width: 95%;
-  aspect-ratio: 1 / 1;
+  width: 65%;
+  height: 65%;
 }
-
-/* @media screen and (min-width: 768px) {
-  .fav-btn-container {
-    top: 20px;
-    right: 20px;
-  }
-
-} */

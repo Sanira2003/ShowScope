@@ -65,7 +65,7 @@ ul {
 .page {
   width: 100%;
   margin-top: 80px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   min-height: calc(100vh - 130px);
 }
 
@@ -84,5 +84,9 @@ ul {
 
   p {
     font-size: 16px;
+  }
+
+  .page {
+    margin-top: 90px;
   }
 }

@@ -1,0 +1,29 @@
+.cast {
+  width: 150px;
+  background: var(--surface-color);
+  border-radius: 10px;
+  box-shadow: 0 0 3px var(--border-color);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cast-info {
+  width: 100%;
+  text-wrap: nowrap;
+  padding: 0 5px;
+}
+
+.cast-info p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cast img {
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .cast {
+    width: 200px;
+  }
+}

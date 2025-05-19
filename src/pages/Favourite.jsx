@@ -16,9 +16,9 @@ const Favourite = () => {
   return (
     <div className="page">
       <MovieGrid
-        movies={favoriteMovies}
+        movies={favoriteMovies.reverse()}
         title="Favorite Movies"
-        error="No favorite movies."
+        error="Add favorite movies to view."
       />
     </div>
   );

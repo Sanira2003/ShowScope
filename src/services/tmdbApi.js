@@ -29,3 +29,11 @@ export const searchMovies = async (query) => {
 export const getImageUrl = (poster_path, size = "w500") => {
   return `${IMG_URL}/${size}${poster_path}`;
 };
+
+export const getMovieById = async (id) => {
+  const response = await fetch(
+    `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=credits`
+  );
+  const result = await response.json();
+  return result;
+};

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const Profile = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const { logout } = useAuth();
   const { userData, removeUserdata } = useUserdata();
@@ -15,7 +15,7 @@ const Profile = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setIsLoading(true);
     try {
       await logout();
       removeUserdata();
@@ -24,15 +24,16 @@ const Profile = () => {
       console.log(err);
       setError("Error Logout");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    !userData && navigate("/login");
-  });
+    !userData && navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : (
     userData && (

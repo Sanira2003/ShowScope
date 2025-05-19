@@ -181,6 +181,7 @@ const EditProfile = () => {
                     }))
                   }
                 >
+                  <option value=" ">Select your favorite genre</option>
                   <option value="Action">Action</option>
                   <option value="Comedy">Comedy</option>
                   <option value="Drama">Drama</option>

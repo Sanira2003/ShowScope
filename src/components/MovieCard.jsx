@@ -20,7 +20,7 @@ const MovieCard = ({ movie }) => {
         <div className="movie-info">
           <h3 className="movie-name">{title}</h3>
           <div className="movie-description">
-            <p>{release_date.split("-")[0]}</p>
+            <p>{new Date(release_date).getFullYear()}</p>
             <span className="rating">
               <Star color="gold" size={15} />
               <p>{Number(vote_average).toFixed(1)}</p>

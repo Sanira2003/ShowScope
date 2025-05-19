@@ -7,14 +7,14 @@ import Loading from "../components/Loading";
 const Serach = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { searchQuery } = useUserdata();
 
   useEffect(() => {
     if (searchQuery.length === 0) return setError("Enter a movie.");
     const handleSearchMovies = async () => {
       setError("");
-      setLoading(true);
+      setIsLoading(true);
       try {
         const results = await searchMovies(searchQuery);
         setResult(results.results);
@@ -22,13 +22,13 @@ const Serach = () => {
         console.log(err);
         setError("Error find Movie");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     handleSearchMovies();
   }, [searchQuery]);
 
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <div className="page">
