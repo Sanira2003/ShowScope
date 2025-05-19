@@ -134,7 +134,7 @@
 }
 
 .search-movies input {
-  width: 0;
+  width: 150px;
   transition: 0.3s;
   background: transparent;
   outline: none;
@@ -206,5 +206,9 @@
 
   .mode {
     transform: none;
+  }
+
+  .search-movies input {
+    width: 0;
   }
 }
