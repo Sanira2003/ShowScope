@@ -6,11 +6,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import {
-  auth,
-  facebookProvider,
-  googleProvider,
-} from "../services/firebaseConfig";
+import { auth, googleProvider } from "../services/firebaseConfig";
 
 const AuthContext = createContext();
 
@@ -22,8 +18,6 @@ const AuthProvider = ({ children }) => {
     createUserWithEmailAndPassword(auth, email, password);
 
   const signupWithGoogle = () => signInWithPopup(auth, googleProvider);
-
-  const signupWithFacebook = () => signInWithPopup(auth, facebookProvider);
 
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
@@ -42,7 +36,6 @@ const AuthProvider = ({ children }) => {
     currentUser,
     signup,
     signupWithGoogle,
-    signupWithFacebook,
     login,
     logout,
   };

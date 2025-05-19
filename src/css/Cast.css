@@ -1,10 +1,13 @@
 .cast {
   width: 150px;
-  background: var(--surface-color);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0 0 3px var(--border-color);
   overflow: hidden;
   flex-shrink: 0;
+}
+.dark .cast {
+  background: rgba(30, 30, 30, 0.8);
 }
 
 .cast-info {
@@ -13,9 +16,14 @@
   padding: 0 5px;
 }
 
-.cast-info p {
+.cast .cast-info p {
   text-overflow: ellipsis;
   overflow: hidden;
+  background: transparent;
+}
+
+.dark .cast .cast-info p {
+  background: transparent;
 }
 
 .cast img {
