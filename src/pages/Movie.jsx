@@ -29,8 +29,8 @@ const Movie = () => {
           )
         );
       } catch (err) {
-        console.log(err);
-        setError("Error loading movie.");
+        setError(err);
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +39,6 @@ const Movie = () => {
     handleGetMovie();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(movie);
 
   return isLoading ? (
     <Loading />

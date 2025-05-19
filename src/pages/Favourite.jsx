@@ -10,8 +10,10 @@ const Favourite = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !currentUser && navigate("/login");
-    alert("You need to be logged in to add favorites.");
+    if (!currentUser) {
+      navigate("/login");
+      alert("You need to be logged in to view favorites.");
+    }
   });
 
   return (

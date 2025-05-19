@@ -13,7 +13,10 @@ const FavoriteIcon = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleFavorite = () => {
-    if (!currentUser) return navigate("/login");
+    if (!currentUser) {
+      alert("You need to be logged in to add favorites.");
+      return navigate("/login");
+    }
     if (isFavoriteMovie(movie)) removeFromFavorites(movie);
     else addToFavorites(movie);
   };

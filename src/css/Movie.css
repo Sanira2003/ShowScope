@@ -112,6 +112,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .header {
+    text-align: left;
+  }
+
   .movie {
     flex-direction: row;
     gap: 30px;
