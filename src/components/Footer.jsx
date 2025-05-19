@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useUserdata } from "../contexts/UserdataContext";
 import { Home, Heart, User } from "lucide-react";
 import "../css/Footer.css";
-import tmdbLogo from "../../public/tmdb.svg";
+import tmdbLogo from "../assets/tmdb.svg";
 
 const Footer = () => {
   const { userData } = useUserdata();
