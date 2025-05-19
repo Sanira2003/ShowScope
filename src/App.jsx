@@ -1,5 +1,5 @@
 import "./css/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -13,12 +13,13 @@ import Search from "./pages/Search";
 import Movie from "./pages/Movie";
 
 function App() {
+  const location = useLocation();
   return (
     <BrowserRouter>
       <AuthProvider>
         <UserdataProvider>
           <Navbar />
-          <Routes>
+          <Routes location={location} key={location.key}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
