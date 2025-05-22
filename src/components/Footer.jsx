@@ -37,7 +37,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              {userData && <User size="15" />}
+              {<User size="15" />}
               <Link to={userData ? "/profile" : "/login"}>
                 <p>{userData ? userData.name.split(" ")[0] : "Login"}</p>
               </Link>
