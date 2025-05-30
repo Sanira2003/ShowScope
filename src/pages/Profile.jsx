@@ -34,7 +34,7 @@ const Profile = () => {
       navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userData]);
 
   return isLoading ? (
     <Loading />

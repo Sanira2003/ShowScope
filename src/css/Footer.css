@@ -44,6 +44,10 @@
   opacity: 1;
 }
 
+.footer-links li p {
+  text-transform: capitalize;
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 20px;
