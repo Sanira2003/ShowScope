@@ -94,6 +94,7 @@
   display: flex;
   gap: 5px;
   align-items: center;
+  text-transform: capitalize;
 }
 
 .navigations li:hover {
