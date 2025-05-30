@@ -49,23 +49,31 @@ const Footer = () => {
           <h3>Contact me</h3>
           <ul>
             <li>
-              <Link
-                to={
-                  "https://mail.google.com/mail/?view=cm&fs=1&to=sanira.adesha@gmail.com&su=Hello&body=Test%20message"
-                }
+              <a
+                href="https://mail.google.com/mail/u/0/?fs=1&to=sanira.adesha@gmail.com&tf=cm"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <p>Gmail</p>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to={"https://github.com/Sanira2003"}>
-                <p>GitHub</p>
-              </Link>
+              <a
+                href="https://github.com/Sanira2003"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
             </li>
             <li>
-              <Link to={"https://www.linkedin.com/in/sanira-deneth-615013320/"}>
-                <p>LinkedIn</p>
-              </Link>
+              <a
+                href="https://www.linkedin.com/in/sanira-deneth-615013320/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
             </li>
           </ul>
         </div>
