@@ -30,7 +30,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (!userData) {
-      alert("You need to be logged in to view.");
       navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
