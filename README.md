@@ -46,10 +46,7 @@
 ---
 
 ## 📽 Demo (GIF)
-
-| Browsing Movies | Dark Mode |
-|------------------|-----------|
-| ![demo](./assets/demo-browse.gif) | ![dark](./assets/demo-darkmode.gif) |
+![demo](./assets/demo.gif) 
 
 ---
 
