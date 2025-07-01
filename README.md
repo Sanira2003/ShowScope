@@ -1,7 +1,7 @@
 # 🎬 ShowScope – Your Ultimate Movie Discovery Web App 🚀
 
-[![Live Demo](https://img.shields.io/badge/🌐-Live%20Demo-blueviolet?style=for-the-badge)]([https://lnkd.in/g99h8sUC](https://showscope.netlify.app/))
-[![GitHub Repo](https://img.shields.io/badge/💻-GitHub%20Repo-00b894?style=for-the-badge)]([https://lnkd.in/gEdyHBcQ](https://github.com/Sanira2003/ShowScope))
+[![Live Demo](https://img.shields.io/badge/🌐-Live%20Demo-blueviolet?style=for-the-badge)](https://showscope.netlify.app/)
+[![GitHub Repo](https://img.shields.io/badge/💻-GitHub%20Repo-00b894?style=for-the-badge)](https://github.com/Sanira2003/ShowScope)
 [![React](https://img.shields.io/badge/⚛️%20React-JavaScript-blue?style=flat-square&logo=react)](https://reactjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Auth-orange?style=flat-square&logo=firebase)](https://firebase.google.com/)
 [![TMDB](https://img.shields.io/badge/TMDB%20API-Used-blue?style=flat-square)](https://www.themoviedb.org/documentation/api)
